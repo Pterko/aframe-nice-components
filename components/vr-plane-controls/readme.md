@@ -6,3 +6,6 @@ This component creates contorls for mobile-based aframe applications in two mode
 
   - For VR mode user should look al "plane" (it can be anything you want) to go
   - For Mono mode user should tap(click, hover) on specified div on the screen.
+
+  
+  
