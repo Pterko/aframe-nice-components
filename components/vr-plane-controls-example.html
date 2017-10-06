@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>360&deg; Image Gallery</title>
+    <meta name="description" content="360&deg; Image Gallery - A-Frame">
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js"> </script>
+
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
+    <script src="https://321c4.github.io/aframe-link-demo/js/aframe-hyperlink.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.12.3/dist/aframe-extras.min.js"></script>
+    <script src="js/custom.js"></script>
+  <script src="https://unpkg.com/aframe-look-at-component@0.5.1/dist/aframe-look-at-component.min.js"></script>
+
+    <script src="js/envMapMaterial.js"></script>
+
+
+    <script src="js/lzma.js"></script>
+    <script src="js/ctm.js"></script>
+    <script src="js/CTMLoader.js"></script>
+    <script src="js/ctm_component.js"></script>
+
+
+  </head>
+  <body>
+    <a-scene stats2>
+        <a-entity id="camerarig"  vr-plane-controls="camera: #camera; plane: #moveElem; div: #tapToGo">
+            <a-entity  id="camera" camera="userHeight: 1.6;" 
+                look-controls
+            >
+                <a-cursor id="cursor"
+                    animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
+                    animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
+                    event-set__1="_event: mouseenter; color: springgreen"
+                    event-set__2="_event: mouseleave; color: black"
+                    fuse="true"
+                    raycaster="objects: .hover;">
+                    <a-animation attribute="scale"
+                        dur="2000"
+                        fill="forwards"
+                        to="0 0 0"
+                        repeat="indefinite"
+                        begin="mouseenter"
+                        end="mouseleave"
+                        ></a-animation>
+                    </a-cursor>
+                <a-cursor id="cursorLinks"
+                    event-set__1="_event: mouseenter; color: springgreen; visible: true;"
+                    event-set__2="_event: mouseleave; color: black; visible: false;"
+                    fuse="true"
+                    visible="false"
+                    raycaster="objects: .hoverLink;">
+                    
+                    <a-animation attribute="scale"
+                        dur="2000"
+                        fill="forwards"
+                        to="0 0 0"
+                        repeat="indefinite"
+                        begin="mouseenter"
+                        end="mouseleave"
+                        ></a-animation>
+                    </a-cursor>
+                <a-cursor id="cursorMove"
+                    event-set__1="_event: mouseenter; color: springgreen; visible: true;"
+                    event-set__2="_event: mouseleave; color: black; visible: false;"
+                    visible="false"
+                    fuse="true"
+                    raycaster="objects: .hoverMove;">
+                </a-cursor>
+            </a-entity>
+            <a-entity look-at="#camera" id="moveElem" class="hoverMove" scale="0.000000000001 0.000000000001 0.000000000001" geometry="primitive: plane; height: 0.5; width: 0.5" position="0 0.6 -1" rotation="-45 0 0"
+                material="color: gray; opacity: 1; side: double;">
+            </a-entity>
+        </a-entity>
+    </a-scene>
+    <div id="tapToGo" style="
+        position: fixed;
+        height: 100px;
+        width: 100px;
+        bottom: 0px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #FFFFFF;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        user-select: none;     
+        background-image: url('/1.png');
+    "></div>
+  </body>
+</html>
